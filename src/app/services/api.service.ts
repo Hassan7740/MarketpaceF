@@ -13,7 +13,6 @@ export class ApiService {
   getHeaders():HttpHeaders{
     return new HttpHeaders({
       Authorization : "Bearer "+this.tokenService.getToken(),
-
     });
   }
 

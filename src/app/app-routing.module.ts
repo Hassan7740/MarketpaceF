@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { BaseComponent } from './views/layout/base/base.component';
 import { AuthGuard } from './views/pages/auth/services/auth-guard.service';
 import { ErrorPageComponent } from './views/pages/error-page/error-page.component';
+import { AdminComponent } from './views/pages/admin/admin.component';
 
 const routes: Routes = [
   {
@@ -42,6 +43,10 @@ const routes: Routes = [
     ]
   },
   {
+    path:'admin',
+    component: AdminComponent
+  },
+  {
     path: 'error',
     component: ErrorPageComponent,
     data: {
@@ -54,11 +59,12 @@ const routes: Routes = [
     path: 'error/:type',
     component: ErrorPageComponent,
   },
-  { path: '**', redirectTo: 'error', pathMatch: 'full' },
+  { path: '**', redirectTo: 'error', pathMatch: 'full' }
+  
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes , { scrollPositionRestoration: 'enabled' })],
-  exports: [RouterModule]
+exports: [RouterModule]
 })
 export class AppRoutingModule { }
