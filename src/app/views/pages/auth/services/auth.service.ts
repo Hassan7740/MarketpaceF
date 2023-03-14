@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 import { LocalstorageService } from './localstorage.service';
 import { map } from 'rxjs/operators';
 import {_User} from '../register/user.service'
+
 environment.api
 @Injectable({
   providedIn: 'root'
