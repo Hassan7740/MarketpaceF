@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { LocalstorageService } from './localstorage.service';
 import { map } from 'rxjs/operators';
+import {_User} from '../register/user.service'
 
 environment.api
 @Injectable({
@@ -14,6 +15,7 @@ export class AuthService {
 
   refreshTokenTimeout: any;
 
+
   constructor(
     private http: HttpClient,
     private _token: LocalstorageService,
@@ -21,12 +23,12 @@ export class AuthService {
   ) { }
 
   login(email: string, password: string): Observable<any> {
-    return this.http.post<any>(`${environment.api}v1/auth/login`, { email, password });
+    return this.http.post<any>(`${environment.api}auth/login`, { email, password });
   }
 
-  register(name: string, email: string, password: string): Observable<any> {
+  register(user:_User): Observable<any> {
     let avatar = 'https://api.escuelajs.co/api/v1/files/8483.jpg'
-    return this.http.post<any>(`${environment.api}v1/users/`, { name, email, password, avatar });
+    return this.http.post<any>(`${environment.api}auth/signup`,user);
   }
 
   loggedIn() {

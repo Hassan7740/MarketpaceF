@@ -4,8 +4,7 @@
             <div class="col-md-6 col-lg-7 bg-light">
                 <div class="hero-wrap d-flex align-items-center h-100">
                     <div class="hero-mask opacity-8"></div>
-                    <div class="hero-bg hero-bg-scroll"
-                        style="background-image:url('assets/images/login-bg.jpg');">
+                    <div class="hero-bg hero-bg-scroll" style="background-image:url('assets/images/login-bg.jpg');">
                     </div>
                     <div class="hero-content mx-auto w-100 h-100 d-flex flex-column">
                         <div class="container">
@@ -27,7 +26,7 @@
                         <div class="col-11 col-md-10 col-lg-9 mx-auto">
                             <div class="logo">
                                 <a class="fw-600 text-6 text-dark" routerLink="/" title="Store">
-                                    Store
+                                    WiKaLa
                                     <i class="fa-solid fa-cart-shopping"></i>
                                 </a>
                             </div>
@@ -38,52 +37,138 @@
                     <div class="row g-0">
                         <div class="col-11 col-md-10 col-lg-9 mx-auto">
                             <h3 class="text-12 mb-4">Sign Up</h3>
-                            <form id="signupForm"  [formGroup]="registerFormGroup">
-                                <label class="form-label fw-500" for="fullName">Full Name</label>
-                                <div [classList]="registerForm.name.invalid && isSubmitted?'input-group':'mb-3 input-group'">
-                                    <input type="text" class="form-control bg-light border-light" id="fullName"
-                                    [class.is-invalid]="registerForm.name.invalid && isSubmitted"
-                                        placeholder="Full Name" formControlName="name">
-                                    <span class="input-group-text text-muted">
-                                        <i class="fas fa-user"></i>
-                                    </span>
+                            <form id="signupForm" [formGroup]="registerFormGroup">
+                                <div class="row">
+                                    <div class="col">
+                                        <label class="form-label fw-500" for="fullName">First Name</label>
+                                        <div
+                                            [classList]="registerForm.firstName.invalid && isSubmitted?'input-group':'mb-3 input-group'">
+                                            <input type="text" class="form-control bg-light border-light" id="fullName"
+                                                [class.is-invalid]="registerForm.firstName.invalid && isSubmitted"
+                                                placeholder="First Name" formControlName="firstName"
+                                                style="margin-right: 10px;">
+
+                                        </div>
+                                        <small *ngIf="registerForm.firstName.invalid && isSubmitted"
+                                            class="d-block text-danger">
+                                            First Name is required
+                                        </small>
+                                    </div>
+                                    <div class="col">
+                                        <label class="form-label fw-500" for="LastName">Last Name</label>
+                                        <div
+                                            [classList]="registerForm.lastName.invalid && isSubmitted?'input-group':'mb-3 input-group'">
+                                            <input type="text" class="form-control bg-light border-light" id="LastName"
+                                                [class.is-invalid]="registerForm.lastName.invalid && isSubmitted"
+                                                placeholder="Last Name" formControlName="lastName">
+                                        </div>
+                                        <small *ngIf="registerForm.lastName.invalid && isSubmitted"
+                                            class="d-block text-danger">
+                                            Last Name is required
+                                        </small>
+
+                                    </div>
                                 </div>
-                                <small *ngIf="registerForm.name.invalid && isSubmitted" class="d-block text-danger">
-                                    Name is required
-                                </small>
                                 <label class="form-label fw-500" for="emailAddress">Email Address</label>
-                                <div [classList]="registerForm.email.invalid && isSubmitted?'input-group':'mb-3 input-group'">
+                                <div
+                                    [classList]="registerForm.email.invalid && isSubmitted?'input-group':'mb-3 input-group'">
                                     <input type="email" class="form-control bg-light border-light" id="emailAddress"
-                                    [class.is-invalid]="registerForm.email.invalid && isSubmitted"
-                                         placeholder="Email Address" formControlName="email">
-                                    <span class="input-group-text text-muted">
-                                        <i class="fas fa-envelope"></i>
-                                    </span>
+                                        [class.is-invalid]="registerForm.email.invalid && isSubmitted"
+                                        placeholder="Email Address" formControlName="email">
+
+
                                 </div>
                                 <small *ngIf="registerForm.email.invalid && isSubmitted" class=" d-block text-danger">
-                                    <span *ngIf="registerForm.email.errors?.required">Email is required</span>
-                                    <span *ngIf="registerForm.email.errors?.email">Email is invalid</span>
+                                    <span *ngIf="registerForm.email.errors?.['required']">Email is required</span>
+                                    <span *ngIf="registerForm.email.errors?.['email']">Email is invalid</span>
                                 </small>
                                 <label class="form-label fw-500" for="loginPassword">Password</label>
-                                <div [classList]="registerForm.password.invalid && isSubmitted?'input-group':'mb-3 input-group'">
-                                    <input [type]="passwordVisible?'text':'password'"
-                                        class="form-control form-control-lg bg-light border-light" id="loginPassword"
+                                <div
+                                    [classList]="registerForm.password.invalid && isSubmitted?'input-group':'mb-3 input-group'">
+                                    <input type="password" class="form-control form-control-lg bg-light border-light"
+                                        id="loginPassword"
                                         [class.is-invalid]="registerForm.password.invalid && isSubmitted"
-                                         placeholder="Password" formControlName="password">
-                                    <span class="input-group-text text-muted" (click)="visibilityToggle()"
-                                        style="cursor: pointer;">
-                                        <i [classList]="passwordVisible?'fas fa-eye':'fas fa-eye-slash'"></i>
-                                    </span>
+                                        placeholder="Password" formControlName="password">
+
                                 </div>
                                 <small *ngIf="registerForm.password.invalid && isSubmitted" class="d-block text-danger">
                                     Password is required
                                 </small>
-                                <div class="form-check my-4">
-                                    <input id="agree" name="agree" class="form-check-input" type="checkbox">
-                                    <label class="form-check-label" for="agree">
-                                        I agree to the <a href="#">Terms</a> and <a href="#">Privacy</a>.
-                                    </label>
+                                <div class="row">
+                                    <div class="col-8">
+                                        <label class="form-label fw-500" for="phone">Phone</label>
+                                        <input type="text" id="phone" placeholder="Phone Number" formControlName="phone"
+                                            class="form-control form-control-lg bg-light border-light">
+                                        <div
+                                            *ngIf="registerForm.phone.invalid && (registerForm.phone.dirty || registerForm.phone.touched)">
+
+                                            <div *ngIf="registerForm.phone.errors?.['pattern']">
+                                                Please enter a valid phone number.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <label class="form-label fw-500" for="gender">Gender:</label>
+                                        <select aria-placeholder="Gender"
+                                            class="form-control form-control-lg bg-light border-light" id="gender"
+                                            formControlName="gender">
+                                            <option value="">-- Select gender --</option>
+                                            <option value="M">Male</option>
+                                            <option value="G">Female</option>
+
+                                        </select>
+                                    </div>
                                 </div>
+                                <div class="row">
+                                    <div class="col-4">
+                                        <label class="form-label fw-500" for="country">Country</label>
+                                        <div
+                                            [classList]="registerForm.country.invalid && isSubmitted?'input-group':'mb-3 input-group'">
+                                            <input type="text" class="form-control bg-light border-light" id="country"
+                                                [class.is-invalid]="registerForm.country.invalid && isSubmitted"
+                                                placeholder="Country" formControlName="country"
+                                                style="margin-right: 10px;">
+
+                                        </div>
+                                        <small *ngIf="registerForm.country.invalid && isSubmitted"
+                                            class="d-block text-danger">
+                                            country is required
+                                        </small>
+
+                                    </div>
+                                    <div class="col-4">
+                                        <label class="form-label fw-500" for="gov">Gov</label>
+                                        <div
+                                            [classList]="registerForm.area.invalid && isSubmitted?'input-group':'mb-3 input-group'">
+                                            <input type="text" class="form-control bg-light border-light" id="gov"
+                                                [class.is-invalid]="registerForm.area.invalid && isSubmitted"
+                                                placeholder="Gov" formControlName="area" style="margin-right: 10px;">
+
+                                        </div>
+                                        <small *ngIf="registerForm.area.invalid && isSubmitted"
+                                            class="d-block text-danger">
+                                            Gov is required
+                                        </small>
+
+                                    </div>
+                                    <div class="col-4">
+                                        <label class="form-label fw-500" for="street">Area</label>
+                                        <div
+                                            [classList]="registerForm.street.invalid && isSubmitted?'input-group':'mb-3 input-group'">
+                                            <input type="text" class="form-control bg-light border-light" id="area"
+                                                [class.is-invalid]="registerForm.street.invalid && isSubmitted"
+                                                placeholder="Area" formControlName="street" style="margin-right: 10px;">
+
+                                        </div>
+                                        <small *ngIf="registerForm.street.invalid && isSubmitted"
+                                            class="d-block text-danger">
+                                            Area is required
+                                        </small>
+
+                                    </div>
+                                </div>
+
+
                                 <div class="d-grid my-4">
                                     <button class="btn btn-dark btn-lg" type="submit" (click)="onSubmit()">
                                         Sign Up

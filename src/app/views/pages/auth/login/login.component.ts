@@ -47,6 +47,8 @@ export class LoginComponent implements OnInit {
       ),
       ).subscribe(
       (user) => {
+        console.log(user.access_token)
+        alert();
         this.authError = false;
         this._localstorageService.setToken(user.access_token);
         this._auth.startRefreshTokenTimer();
