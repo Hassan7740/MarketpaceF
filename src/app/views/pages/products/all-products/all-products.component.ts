@@ -37,6 +37,8 @@ export class AllProductsComponent implements OnInit {
   getAllProducts(offset: number, limit: number) {
     this.Loading = true;
     this._product.getProduct(offset, limit).subscribe((data) => {
+      console.log(data);
+      console.log("Hamada");
 
       setTimeout(() => {
         this.products = [...this.products, ...data]
