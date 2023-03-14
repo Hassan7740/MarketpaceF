@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   loginFormGroup!: FormGroup;
   isSubmitted: boolean = false;
   authError: boolean = false;
-  authMessage:string = 'Email or Password are wrong';
+  authMessage: string = 'Email or Password are wrong';
 
   constructor(
     private _formBuilder: FormBuilder,
@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
     private _localstorageService: LocalstorageService,
     private _toast: HotToastService,
     private _router: Router
-  ) {}
+  ) { }
 
   initLoginForm() {
     this.loginFormGroup = this._formBuilder.group({
@@ -45,10 +45,8 @@ export class LoginComponent implements OnInit {
           error: ({ error }) => `There was an error: ${error.message} `
         }
       ),
-      ).subscribe(
+    ).subscribe(
       (user) => {
-        console.log(user.access_token)
-        alert();
         this.authError = false;
         this._localstorageService.setToken(user.access_token);
         this._auth.startRefreshTokenTimer();
