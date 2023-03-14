@@ -36,7 +36,8 @@ import { SharedModule } from './views/shared/shared.module';
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
-    HotToastModule.forRoot()
+    HotToastModule.forRoot(),
+    
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
