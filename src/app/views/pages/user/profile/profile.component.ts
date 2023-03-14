@@ -2,6 +2,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../services/user.service';
+import { LocalstorageService } from '../../../pages/auth/services/localstorage.service'
+import jwt_decode from 'jwt-decode';
 
 @Component({
   selector: 'app-profile',
@@ -18,6 +20,7 @@ export class ProfileComponent implements OnInit {
   constructor(
     private _formBuilder: FormBuilder,
     private _userService: UserService,
+    private _localstorageService: LocalstorageService
   ) { }
 
 
@@ -27,10 +30,17 @@ export class ProfileComponent implements OnInit {
     ------------------------------------
   */
   initeditUserForm() {
+    const token = this._localstorageService.getToken();
+    const tokenInfo = this.getDecodedAccessToken(token);
+    this.profile.email = tokenInfo.sub;
+    this.profile.role = tokenInfo.name;
+    this.profile.address = tokenInfo.address;
+    this.profile.phone = tokenInfo.phone;
     this.editUserFormGroup = this._formBuilder.group({
       name: [this.profile.name, Validators.required],
       email: [this.profile.email, [Validators.required, Validators.email]],
-      role: [this.profile.role, Validators.required]
+      role: [this.profile.role, Validators.required],
+      address :[this.profile.address ,Validators.required]
     });
   }
 
@@ -92,6 +102,12 @@ export class ProfileComponent implements OnInit {
     this.initeditUserForm();
 
   }
-
+  getDecodedAccessToken(token: string): any {
+    try {
+      return jwt_decode(token);
+    } catch (Error) {
+      return null;
+    }
+  }
 
 }
