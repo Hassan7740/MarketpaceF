@@ -10,8 +10,8 @@ export class ProductService {
 
   constructor(private _HttpClient: HttpClient) { }
 
-  getProduct(): Observable<any> {
-    return this._HttpClient.get<any>(`${environment.api}/product`)
+  getProduct(offset: number, limit: number): Observable<any> {
+    return this._HttpClient.get<any>(`${environment.api}homepage?offset=${offset}&limit=${limit}`)
   }
 
   getSingleProduct(id: number): Observable<any> {

@@ -34,9 +34,9 @@ export class AllProductsComponent implements OnInit {
   ) { }
 
 
-  getAllProducts() {
+  getAllProducts(offset: number, limit: number) {
     this.Loading = true;
-    this._product.getProduct().subscribe((data) => {
+    this._product.getProduct(offset, limit).subscribe((data) => {
 
       setTimeout(() => {
         this.products = [...this.products, ...data]
@@ -130,13 +130,12 @@ export class AllProductsComponent implements OnInit {
   onScroll() {
     const offset = this.limit;
     this.limit = (this.limit + 20) == 178 || (this.limit + 20) > 178 ? 178 : this.limit + 20;
-    if(this.limit !== 178 ) this.getAllProducts();
+    if(this.limit !== 178 ) this.getAllProducts(Math.floor(offset), Math.floor(this.limit));
   }
 
   ngOnInit(): void {
-    this.getAllProducts();
+    this.getAllProducts(0, this.limit);
     this.getWishList();
   }
-
 
 }
