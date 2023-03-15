@@ -20,6 +20,8 @@ import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform
 import { SharedModule } from './views/shared/shared.module';
 import { AdminComponent } from './views/pages/admin/admin.component';
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +29,7 @@ import { AdminComponent } from './views/pages/admin/admin.component';
     FooterComponent,
     ErrorPageComponent,
     BaseComponent,
-    // AdminComponent,
+    AdminComponent,
   ],
   imports: [
     BrowserAnimationsModule,
