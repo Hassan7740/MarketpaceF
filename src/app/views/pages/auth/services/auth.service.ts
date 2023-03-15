@@ -12,8 +12,7 @@ environment.api
   providedIn: 'root'
 })
 export class AuthService {
-
-  refreshTokenTimeout: any;
+ 
 
 
   constructor(
@@ -26,9 +25,10 @@ export class AuthService {
     return this.http.post<any>(`${environment.api}auth/login`, { email, password });
   }
 
-  setProductInApi(email: string, productId: number[], status: String): Observable<any> {
-    console.log({ email, status, productId });
-    return this.http.post<any>(`${environment.api}auth/test`, { email, status, productId });
+  setProductInApi(email: string, productId: number[], status: String ,proudctAmount:number[]): Observable<any> {
+    console.log({ email, status, productId,proudctAmount});
+    console.log("+++++++++++++++++++++++++++++++++++");
+    return this.http.post<any>(`${environment.api}auth/test`, { email, status, productId,proudctAmount});
   }
 
 
@@ -56,33 +56,33 @@ export class AuthService {
     this.router.navigate(['/auth']);
   }
 
-  refreshToken(): Observable<any> {
-    const token = this._token.getToken();
-    return this.http.post<any>(`${environment.api}v1/auth/refresh-token`, { token }).pipe(
-      map((response: any) => {
+  // refreshToken(): Observable<any> {
+  //   const token = this._token.getToken();
+  //   return this.http.post<any>(`${environment.api}auth/login`, { token }).pipe(
+  //     map((response: any) => {
 
-        this._token.setToken(response.access_token);
+  //       this._token.setToken(response.access_token);
 
-        const expiration = response.refresh_token;
-        localStorage.setItem('expiration', expiration);
+  //       const expiration = response.refresh_token;
+  //       localStorage.setItem('expiration', expiration);
 
-        this.startRefreshTokenTimer();
-        return true;
-      })
-    );
-  }
+  //       this.startRefreshTokenTimer();
+  //       return true;
+  //     })
+  //   );
+  // }
 
-  startRefreshTokenTimer() {
-    console.log('start Refresh Token Timer');
-    const jwtToken = this._token.getToken();
-    const jwtTokenDecode = JSON.parse(atob(jwtToken.split('.')[1]));
-    const expires = new Date(jwtTokenDecode.exp * 1000);
-    const timeout = expires.getTime() - Date.now() - (60 * 1000);
-    console.log('timeout', timeout);
-    this.refreshTokenTimeout = setTimeout(() => this.refreshToken().subscribe(), timeout);
-  }
+  // startRefreshTokenTimer() {
+  //   console.log('start Refresh Token Timer');
+  //   const jwtToken = this._token.getToken();
+  //   const jwtTokenDecode = JSON.parse(atob(jwtToken.split('.')[1]));
+  //   const expires = new Date(jwtTokenDecode.exp * 1000);
+  //   const timeout = expires.getTime() - Date.now() - (60 * 1000);
+  //   console.log('timeout', timeout);
+  //   this.refreshTokenTimeout = setTimeout(() => this.refreshToken().subscribe(), timeout);
+  // }
 
-  stopRefreshTokenTimer() {
-    clearTimeout(this.refreshTokenTimeout);
-  }
+  // stopRefreshTokenTimer() {
+  //   clearTimeout(this.refreshTokenTimeout);
+  // }
 }

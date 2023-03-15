@@ -20,7 +20,8 @@ export class CheckoutPageComponent implements OnInit {
   totalPrice!: number;
   isCartEmpty: boolean = false;
   productId: number[] = [];
-  i: number = 0;
+  proudctAmount: any[] = [];
+
   constructor(
     private router: Router,
     private _cartService: CartService,
@@ -82,22 +83,21 @@ export class CheckoutPageComponent implements OnInit {
 
     for (let i = 0; i < this.cartList.length; i++) {
       this.productId[i] = this.cartList[i].product.id;
+      this.proudctAmount[i] = this.cartList[i].quantity;
     }
-    console.log(this.productId)
+    console.log(this.proudctAmount)
 
-    this._auth.setProductInApi(tokenInfo.sub, this.productId, "/auth/test").subscribe(
+    this._auth.setProductInApi(tokenInfo.sub, this.productId, "orderd",this.proudctAmount).subscribe(
       (user) => {
-        // this._auth.startRefreshTokenTimer();
-        
         this.router.navigate(['/checkout/succuss'])
       },
       (error: HttpErrorResponse) => {
         if (error.status !== 400) {
-            alert(error.message)
+          alert(error.message)
         }
       }
     );
-    console.log(this.checkoutForm)
+
   }
 
   ngOnInit(): void {

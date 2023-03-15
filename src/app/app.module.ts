@@ -59,7 +59,7 @@ export class AppModule {
     _wishlistService.initWishlistLocalStorage();
     _cartService.initCartLocalStorage();
     if(_localstorageService.getToken()) {
-      _authService.startRefreshTokenTimer();
+      // _authService.startRefreshTokenTimer();
     }
   }
 }
