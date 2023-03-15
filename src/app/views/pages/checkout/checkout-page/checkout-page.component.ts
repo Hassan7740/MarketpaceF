@@ -74,9 +74,9 @@ export class CheckoutPageComponent implements OnInit {
   }
   placeOrder() {
     this.isSubmitted = true;
-    // if (this.checkoutFormGroup.invalid) {
-    //   return;
-    // }
+    if (this.checkoutFormGroup.invalid) {
+      return;
+    }
     const token = this._localstorageService.getToken();
     const tokenInfo = this.getDecodedAccessToken(token);
     console.log(tokenInfo.sub)
