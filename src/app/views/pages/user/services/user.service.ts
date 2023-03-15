@@ -22,7 +22,7 @@ export class UserService {
   // };
 
   getUser(): Observable<any> {
-    return this._http.get<any>(`${environment.api}v1/auth/profile`);
+  return this._http.get<any>(`${environment.api}auth/test`);
   }
   /*
     ----------------------------

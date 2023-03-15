@@ -6,7 +6,8 @@ import { CartService } from '../../services/cart.service';
 import jwt_decode from 'jwt-decode';
 import { LocalstorageService } from '../../auth/services/localstorage.service';
 import { AuthService } from '../../auth/services/auth.service';
- @Component({
+import { HttpErrorResponse } from '@angular/common/http';
+@Component({
   selector: 'app-checkout-page',
   templateUrl: './checkout-page.component.html',
   styleUrls: ['./checkout-page.component.css']
@@ -18,15 +19,16 @@ export class CheckoutPageComponent implements OnInit {
   cartList!: CartItem[];
   totalPrice!: number;
   isCartEmpty: boolean = false;
-
+  productId: number[] = [];
+  i: number = 0;
   constructor(
     private router: Router,
     private _cartService: CartService,
     private formBuilder: FormBuilder,
     private _localstorageService: LocalstorageService,
-    private _auth :AuthService,
- 
-     
+    private _auth: AuthService,
+
+
   ) { }
 
   getCartList() {
@@ -77,23 +79,24 @@ export class CheckoutPageComponent implements OnInit {
     const token = this._localstorageService.getToken();
     const tokenInfo = this.getDecodedAccessToken(token);
     console.log(tokenInfo.sub)
-   console.log (this._cartService.getCart().items)
 
-    // this._auth.setProductInApi(,,).subscribe(
-    //   (user) => {
-    //     this.authError = false;
-    //     this._localstorageService.setToken(user.access_token);
-    //     this._auth.startRefreshTokenTimer();
-    //     this._router.navigate(['/']);
-    //   },
-    //   (error: HttpErrorResponse) => {
-    //     this.authError = true;
-    //     if (error.status !== 400) {
-    //       this.authMessage = error.message;
-    //     }
-    //   }
-    // );
-    // this.router.navigate(['/checkout/succuss'])
+    for (let i = 0; i < this.cartList.length; i++) {
+      this.productId[i] = this.cartList[i].product.id;
+    }
+    console.log(this.productId)
+
+    this._auth.setProductInApi(tokenInfo.sub, this.productId, "/auth/test").subscribe(
+      (user) => {
+        // this._auth.startRefreshTokenTimer();
+        
+        this.router.navigate(['/checkout/succuss'])
+      },
+      (error: HttpErrorResponse) => {
+        if (error.status !== 400) {
+            alert(error.message)
+        }
+      }
+    );
     console.log(this.checkoutForm)
   }
 

@@ -6,7 +6,7 @@ import { environment } from 'src/environments/environment';
 import { LocalstorageService } from './localstorage.service';
 import { map } from 'rxjs/operators';
 import { _User } from '../register/user.service'
-
+//abbass
 environment.api
 @Injectable({
   providedIn: 'root'
@@ -26,8 +26,9 @@ export class AuthService {
     return this.http.post<any>(`${environment.api}auth/login`, { email, password });
   }
 
-  setProductInApi(email: string, productId: number, status: String): Observable<any> {
-    return this.http.post<any>(`${environment.api}auth/login`, { email, status, productId });
+  setProductInApi(email: string, productId: number[], status: String): Observable<any> {
+    console.log({ email, status, productId });
+    return this.http.post<any>(`${environment.api}auth/test`, { email, status, productId });
   }
 
 

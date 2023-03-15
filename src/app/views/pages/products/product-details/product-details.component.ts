@@ -112,6 +112,7 @@ export class ProductDetailsComponent implements OnInit {
   product: any
   productId!: number
   categoryId!: number
+  categoryName!: string
   imgNotFounded: boolean = false;
   cartList!: CartItem[];
   WishItems!: WishItem[];
@@ -152,7 +153,7 @@ export class ProductDetailsComponent implements OnInit {
     this._productService.getSingleProduct(this.productId).subscribe((data) => {
       this.product = data;
       this.categoryId = data.category.id;
-      this.getProductsByCategory(this.categoryId);
+      this.getProductsByCategory(this.categoryName);
       this.productInCartList = this.checkProductInCartList(data);
       this.isProductInWishList = this.productInWishList(data);
       if (data.images.length == 1) {
@@ -238,8 +239,8 @@ export class ProductDetailsComponent implements OnInit {
   }
 
 
-  getProductsByCategory(categoryId: number) {
-    this._productService.getProductsByCategory(categoryId).subscribe((data) => {
+  getProductsByCategory(categoryName: string) {
+    this._productService.getProductsByCategory(categoryName).subscribe((data) => {
       this.categoryProducts = data;
     })
   }
