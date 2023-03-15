@@ -1,0 +1,29 @@
+<nav class="navbar bg-body-tertiary bg-dark">
+    <div class="container-fluid">
+        <span class="navbar-brand mb-0 h1 text-light">Admin</span>
+    </div>
+</nav>
+<table class="table bg-dark text-light">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">FirstName</th>
+        <th scope="col">LastName</th>
+        <th scope="col">Age</th>
+        <th scope="col">Email</th>
+        <th scope="col">Address</th>
+        <th scope="col">PhoneNumber</th>
+        <th scope="col">CC</th>
+        <th scope="col">Update</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <th scope="row">{{user.userId}}</th>
+        <td>Mark</td>
+        <td>Otto</td>
+        <td>@mdo</td>
+      </tr>
+    </tbody>
+  </table>
