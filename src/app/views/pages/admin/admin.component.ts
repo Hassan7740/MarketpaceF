@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AdminService } from './../../../services/admin.service';
+import { AdminService } from './services/admin.service';
 import { User } from './../../../models/User';
 
 @Component({
@@ -14,6 +14,7 @@ export class AdminComponent implements OnInit {
   
   ngOnInit(): void {
     this.adminService.getAllUser().subscribe((response)=>{
+      alert(response);
       this.users = response.data ;
     })
   }

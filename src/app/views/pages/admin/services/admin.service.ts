@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import {TokenService} from "./token.service";
+import {TokenService} from "../../../../services/token.service";
 import { Observable } from 'rxjs';
-import { User } from '../models/User';
+import { User } from '../../../../models/User';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
@@ -11,13 +11,9 @@ export class AdminService {
     
     constructor(private http:HttpClient, private tokenService:TokenService) { }
 
-    getHeaders():HttpHeaders{
-        return new HttpHeaders({
-          Authorization : "Bearer "+this.tokenService.getToken()
-        });
-      }
+    
         getAllUser(): Observable<any> {
             console.log("in function get all ");
-            return this.http.get<User[]>(`http://localhost:8090/user/all` , {headers: this.getHeaders()});
+            return this.http.get<any>(`http://localhost:8090/user/all`);
           }
     }
