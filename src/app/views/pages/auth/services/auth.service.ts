@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { LocalstorageService } from './localstorage.service';
 import { map } from 'rxjs/operators';
-import {_User} from '../register/user.service'
+import { _User } from '../register/user.service'
 
 environment.api
 @Injectable({
@@ -26,9 +26,14 @@ export class AuthService {
     return this.http.post<any>(`${environment.api}auth/login`, { email, password });
   }
 
-  register(user:_User): Observable<any> {
+  setProductInApi(email: string, productId: number, status: String): Observable<any> {
+    return this.http.post<any>(`${environment.api}auth/login`, { email, status, productId });
+  }
+
+
+  register(user: _User): Observable<any> {
     let avatar = 'https://api.escuelajs.co/api/v1/files/8483.jpg'
-    return this.http.post<any>(`${environment.api}auth/signup`,user);
+    return this.http.post<any>(`${environment.api}auth/signup`, user);
   }
 
   loggedIn() {
@@ -72,7 +77,7 @@ export class AuthService {
     const jwtTokenDecode = JSON.parse(atob(jwtToken.split('.')[1]));
     const expires = new Date(jwtTokenDecode.exp * 1000);
     const timeout = expires.getTime() - Date.now() - (60 * 1000);
-    console.log('timeout', timeout);   
+    console.log('timeout', timeout);
     this.refreshTokenTimeout = setTimeout(() => this.refreshToken().subscribe(), timeout);
   }
 
