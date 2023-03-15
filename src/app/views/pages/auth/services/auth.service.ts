@@ -12,9 +12,7 @@ environment.api
   providedIn: 'root'
 })
 export class AuthService {
- 
-
-
+  refreshTokenTimeout: any;
   constructor(
     private http: HttpClient,
     private _token: LocalstorageService,

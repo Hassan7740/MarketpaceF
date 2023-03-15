@@ -5,6 +5,8 @@ import { AuthService } from '../services/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { LocalstorageService } from '../services/localstorage.service';
 import { HotToastService } from '@ngneat/hot-toast';
+import jwt_decode from 'jwt-decode';
+import { SimpleOuterSubscriber } from 'rxjs/internal/innerSubscribe';
 
 @Component({
   selector: 'app-login',
@@ -49,6 +51,12 @@ export class LoginComponent implements OnInit {
       (user) => {
         this.authError = false;
         this._localstorageService.setToken(user.access_token);
+        //console.log(user.access_token);
+       if (this.getDecodedAccessToken(user.access_token).role == "ADMIN")
+       {
+        this._router.navigate(['/admin']);
+        return;
+       }
         // this._auth.startRefreshTokenTimer();
         this._router.navigate(['/']);
       },
@@ -59,6 +67,13 @@ export class LoginComponent implements OnInit {
         }
       }
     );
+  }
+  getDecodedAccessToken(token: string): any {
+    try {
+      return jwt_decode(token);
+    } catch (Error) {
+      return null;
+    }
   }
 
   get loginForm() {
