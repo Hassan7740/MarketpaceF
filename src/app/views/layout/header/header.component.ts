@@ -57,7 +57,7 @@ export class HeaderComponent implements OnInit {
       response => {
        this.categories = response.data
        console.log(response);
-       alert(this.categories[0].categoryId)
+
       }
     )
     // // alert("id of first category is " + this.categories[0].id)

@@ -9,7 +9,7 @@
                 <a routerLink="/products">Product</a>
             </li>
             <li class="breadcrumb-item active" aria-current="page">
-                abbaas
+                {{product?.title }}
             </li>
         </ol>
     </div>
@@ -43,7 +43,7 @@
             <main class="col-lg-6">
                 <article class="ps-lg-3">
                     <h4 class="title text-dark">
-                        4654: {{product?.title }}
+                        {{product?.title }}
 
                     </h4>
                     <div class="rating-wrap my-3">
@@ -78,27 +78,16 @@
                         <dt class="col-3">Type:</dt>
                         <dd class="col-9">{{product?.category?.name}}</dd>
 
-                        <dt class="col-3">Color:</dt>
-                        <dd class="col-9">Brown</dd>
+                        <dt class="col-3">Quantity:</dt>
+                        <dd class="col-9">{{product?.amount}}</dd>
 
-                        <dt class="col-3">Material:</dt>
-                        <dd class="col-9">Cotton, Jeans </dd>
-
-                        <dt class="col-3">Brand:</dt>
-                        <dd class="col-9">Reebook </dd>
+                      
                     </dl>
 
                     <hr>
 
                     <div class="row mb-4">
-                        <div class="col-md-4 col-6 mb-2">
-                            <label class="form-label">Size</label>
-                            <select class="form-select">
-                                <option>Small</option>
-                                <option>Medium</option>
-                                <option>Large</option>
-                            </select>
-                        </div>
+                        
                         <div class="col-md-4 col-6 mb-3" *ngIf="productInCartList">
                             <label class="form-label d-block">Quantity</label>
                             <div class="input-group input-spinner">

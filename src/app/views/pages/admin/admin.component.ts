@@ -14,7 +14,7 @@ export class AdminComponent implements OnInit {
   
   ngOnInit(): void {
     this.adminService.getAllUser().subscribe((response)=>{
-      alert(response);
+     
       this.users = response.data ;
     })
   }

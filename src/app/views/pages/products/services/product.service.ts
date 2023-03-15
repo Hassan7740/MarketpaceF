@@ -15,15 +15,15 @@ export class ProductService {
   }
 
   getSingleProduct(id: number): Observable<any> {
-    return this._HttpClient.get<any>(`${environment.api}/productpage/product/${id}`)
+    return this._HttpClient.get<any>(`${environment.api}productpage/product/${id}`)
   }
 
   getProductByName(productName: string): Observable<any> {
     return this._HttpClient.get<any>(`${environment.api}/product/${productName}`)
   }
 
-  getProductsByCategory(categoryName: string): Observable<any> {
-    return this._HttpClient.get<any>(`${environment.api}/product/${categoryName}`)
+  getProductsByCategory(categoryId: number): Observable<any> {
+    return this._HttpClient.get<any>(`${environment.api}productpage/category/${categoryId}`)
   }
 
 }
