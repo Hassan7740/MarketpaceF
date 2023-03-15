@@ -5,6 +5,7 @@ import { AuthGuard } from './views/pages/auth/services/auth-guard.service';
 import { ErrorPageComponent } from './views/pages/error-page/error-page.component';
 import { AdminComponent } from './views/pages/admin/admin.component';
 
+
 const routes: Routes = [
   {
     path: 'auth',
