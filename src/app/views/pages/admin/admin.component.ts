@@ -37,7 +37,7 @@ export class AdminComponent implements OnInit {
     this.product.productAmount = this.adminForm.productAmount.value;
     this.product.productDescription = this.adminForm.productDescription.value;
     console.log(this.product)
-    this._adminService.addProduct(this.product);
+    this._adminService.addProduct(this.product).subscribe();
   }
 
   
