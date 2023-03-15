@@ -1,29 +1,38 @@
-<nav class="navbar bg-body-tertiary bg-dark">
-    <div class="container-fluid">
-        <span class="navbar-brand mb-0 h1 text-light">Admin</span>
+<div class="container px-0">
+  <form id="adminForm" [formGroup]="adminFormGroup">
+    <div class="row">
+      <div>
+        <input type="text" class="form-control bg-light border-light" id="productName" placeholder="productName"
+          formControlName="productName" style="margin-right: 10px;">
+      </div>
+      <div>
+        <input type="text" class="form-control bg-light border-light" id="productDescription"
+          placeholder="productDescription" formControlName="productDescription" style="margin-right: 10px;">
+      </div>
+
+      <div>
+        <input type="number" class="form-control bg-light border-light" id="productAmount" placeholder="productAmount"
+          formControlName="productAmount" style="margin-right: 10px;">
+      </div>
+
+      <div>
+        <input type="price" class="form-control bg-light border-light" id="price" placeholder="price"
+          formControlName="price" style="margin-right: 10px;">
+      </div>
+
+      <div>
+        <input type="text" class="form-control bg-light border-light" id="price" placeholder="categoryName"
+          formControlName="categoryName" style="margin-right: 10px;">
+      </div>
+      <div>
+        <input type="number" class="form-control bg-light border-light" id="categoryId" placeholder="categoryId"
+          formControlName="categoryId" style="margin-right: 10px;">
+      </div>
+      <div class="d-grid my-4">
+        <button class="btn btn-dark btn-lg" type="submit" (click)="OnSubmit()">
+          Add Product
+        </button>
+      </div>
     </div>
-</nav>
-<table class="table bg-dark text-light">
-    <thead>
-      <tr>
-        <th scope="col">ID</th>
-        <th scope="col">FirstName</th>
-        <th scope="col">LastName</th>
-        <th scope="col">Age</th>
-        <th scope="col">Email</th>
-        <th scope="col">Address</th>
-        <th scope="col">PhoneNumber</th>
-        <th scope="col">CC</th>
-        <th scope="col">Update</th>
-        <th scope="col">Delete</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let user of users">
-        <th scope="row">{{user.userId}}</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-      </tr>
-    </tbody>
-  </table>
+  </form>
+</div>
